@@ -360,7 +360,7 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 
 ###开始加载广告
 
-到这一步，DroiAdAdapter已准备好根据您的设置来加载广告。为了改善这种得到您的应用程序显示的广告的相关性，你可以选择通过了位置，或者额外的关键字数据。您还可以精确指定所需的广告物料，以帮助节省带宽。
+到这一步，DroiAdAdapter已准备好根据您的设置来加载广告。为了改善您的应用程序显示广告的相关性，你可以设置位置，或者额外的关键字数据。您还可以精确指定所需的广告物料，以帮助节省带宽。
 ```
     final EnumSet<NativeAdAsset> desiredAssets = EnumSet.of(
                         NativeAdAsset.TITLE,
@@ -447,13 +447,13 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 ##其他说明
 
 ###调试模式
-开发者接入SDK时，可以通过以下方法开启Debug模式来打印日志。正式外发的应用请关闭Debug模式，否则会影响广告计费！（开关Debug模式的代码建议添加在Application中的初始化代码之后）。
+开发者接入SDK时，可以通过以下方法开启Debug模式来打印日志（开关Debug模式的代码建议添加在Application中的初始化代码之后）。
 ```
     DroiSdk.setDebugMode(true);
 ``` 
-已正式发布的应用，可以在手机的/sdcard/AdSDK/目录下修改dev_data.json文件,替换内容 {"debug_mode":true} 后重启应用即可开启SDK的Debug功能。
-**注：**    *正式发布的应用请关闭调试模式，否则会影响广告计费！*
-   
+已正式发布的应用，可以在手机的/sdcard/AdSDK/目录下修改dev_data.json文件,替换内容 {"debug_mode":true} 后重启应用即可开启SDK的Debug功能。  
+**注：**    *正式发布的应用请关闭调试模式，否则会影响广告计费！*  
+
 ###关于混淆
 如果您的应用需要混淆，请在混淆的配置文件中加入以下代码：
 ```
@@ -560,8 +560,11 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 Q1.参数太多，不知道如何填写？  
 A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对应的替换值，开发者拿到表格后，直接把数据填写到对应的 meta-data 项中即可(**下方数据为示例数据**)。  
 必须填写的数值：  
-    DROI_APPID        meituan01  
-    DROI_CHANNEL        mt_001  
+
+| name | value |  
+|:-----|-------|  
+|DROI_APPID|meituan01|  
+|DROI_CHANNEL|mt_001|  
 以下数据就运营如果没有给，可以不用在meta-data中配置：  
 
 | name | value |  
