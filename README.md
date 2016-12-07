@@ -563,7 +563,7 @@ A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对
     DROI_APPID        meituan01  
     DROI_CHANNEL        mt_001  
 以下数据就运营如果没有给，可以不用在meta-data中配置：  
-|name|value|
+| name | value |
 |:--|--|
 |DROI_CUSTOMER|hwdsf0001|  
 |DROI_BRANDS|thirdparty|
