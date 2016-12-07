@@ -339,7 +339,7 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
         DroiNativeAdPositioning.serverPositioning();
 ```
 
-### 创建DroiAdAdapter
+###创建DroiAdAdapter
 
 DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存。
 
@@ -563,9 +563,10 @@ A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对
     DROI_APPID        meituan01  
     DROI_CHANNEL        mt_001  
 以下数据就运营如果没有给，可以不用在meta-data中配置：  
+
 | name | value |  
-|:-----|-------|  
-|DROI_CUSTOMER|hwdsf0001|  
+|:-----|-------|  
+|DROI_CUSTOMER|hwdsf0001|  
 |DROI_BRANDS|thirdparty|  
 |DROI_PROJECT|tp_01|  
 |DROI_CPU|tp1111|  
