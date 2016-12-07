@@ -546,6 +546,14 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 -keep public class com.google.ads.**{
     public *;
 }
+
+-keep class org.apache.http.**{*;}
+-keep public class android.net.http.SslError
+-keep public class android.webkit.WebViewClient
+
+-dontwarn android.webkit.WebView
+-dontwarn android.net.http.SslError
+-dontwarn android.webkit.WebViewClient
 ```
 
 ##FAQ
@@ -555,12 +563,13 @@ A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对
     DROI_APPID        meituan01  
     DROI_CHANNEL        mt_001  
 以下数据就运营如果没有给，可以不用在meta-data中配置：  
-    |:--|:--|
-    |DROI_CUSTOMER|             hwdsf0001  
-    |DROI_BRANDS|             thirdparty 
-    |DROI_PROJECT|            tp_01
-    |DROI_CPU|                tp1111
-    |DROI_OSVERSION|          6.0
+|name|value|
+|:--|--|
+|DROI_CUSTOMER|hwdsf0001|  
+|DROI_BRANDS|thirdparty|
+|DROI_PROJECT|tp_01|
+|DROI_CPU|tp1111|
+|DROI_OSVERSION|6.0|
 
 Q2.无法获取到广告？  
 A2.首先确认手机网络连接状态，网络是否可用；然后确认您的DROI_APPID以及DROI_CHANNEL是否填正确填写；然后确认当前应用的包名是不是您提供给Droi运营的包名；最后再检查一下使用的广告位及对应的类型是否一致，比如不要在横幅广告创建方法中调用插屏类广告的广告位。如果以上都检查完还是无法获取广告请联系Droi运营，确认是否给您的应用增加了相关配置！  
