@@ -3,7 +3,7 @@ ADroi-SDK 说明文档
 ---
 
 #简介
-ADroi海外聚合广告SDK是卓易科技为出海客户进行打造的变现平台，实现了多平台SDK的聚合，实时动态切换，包含了强大的控制功能,让出海客户有更多选择的同时，接入也更简单！
+ADroi海外聚合广告SDK是卓易科技为出海客户进行打造的变现平台，实现了多平台SDK的聚合，实时动态切换，包含了强大的控制功能，让出海客户有更多选择的同时，也简化了接入流程！
     
 #安装
 由于目前部分海外广告平台不再支持Eclipse,所以本SDK目前未给出支持Eclipse的方式。
@@ -57,14 +57,13 @@ dependencies {
             android:name="com.facebook.ads.AudienceNetworkActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-        
         <!--配置应用ID&渠道号，必配，数据由Droi运营给出-->
         <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
         <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
     </application>
 </manifest>
 ```
-5.在项目的AndroidManifest.xml中配置广告控制相关参数（选配）：
+3.在项目的AndroidManifest.xml中配置广告控制相关参数（选配）：
 ```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     ...>
@@ -93,15 +92,10 @@ dependencies {
     }
 ```
 
-**注:**     
-*1.如果需要用到以上设置项，请联系运营获取相关配置值；*
-*2.以上所有的控制项可以单独使用，不存在依赖；*
-*3.在代码中设置的参数优先级高于在AndroidManifest.xml中设置的参数，如果两处都设置了控制参数，以代码设置的参数为准；* 
-*4.如果AndroidManifest.xml及代码中都没有设置，SDK将读取系统参数作为默认值。没有设置，将从系统中获取.*
-
 ##横幅广告
 横幅广告接入分为两步：
-1.在xml中增加banner视图对象：
+
+1.在xml中增加banner视图：
 ```
     <com.droi.mobileads.DroiView
         android:id="@+id/adview"
@@ -109,7 +103,8 @@ dependencies {
         android:layout_height="50dp"
         />
 ```
-2.在对应的Activity中增加以下代码：
+
+2.在对应的Activity中增加以下code：
 ```
 public class MainActivity extends AppCompatActivity implements DroiView.BannerAdListener{
     private DroiView droiView;
@@ -169,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements DroiView.BannerAd
 ```
 
 ##插屏广告
+
 插屏的实现可以参考以下Code：
 ```
 public class MainActivity extends AppCompatActivity implements DroiInterstitial.InterstitialAdListener{
@@ -187,9 +183,7 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
         //4.请求广告；
         mInterstitial.load();
     }
-
-
-
+    
     // 自行定义调用显示广告的方法
     void yourAppsShowInterstitialMethod() {
         //5.广告请求成功时，显示广告；
@@ -200,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
             // Avoid calling `load()` here and instead rely on the callbacks as suggested below.
         }
     }
+    
     @Override
     public void onInterstitialLoaded(DroiInterstitial interstitial) {
         Log.d(TAG,"droi onInterstitialLoaded");
@@ -210,7 +205,8 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
     public void onInterstitialFailed(DroiInterstitial interstitial, DroiErrorCode errorCode) {
         Log.d(TAG,"droi onInterstitialFailed");
         // The interstitial has failed to load. Inspect errorCode for additional information.
-        // This is an excellent place to load more ads.    }
+        // This is an excellent place to load more ads.    
+    }
 
     @Override
     public void onInterstitialShown(DroiInterstitial interstitial) {
@@ -232,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
 
     @Override
     protected void onDestroy() {
-        //5.退出时销毁广告视图；
+        //6.退出时销毁广告视图；
         if(mInterstitial != null){
             mInterstitial.destroy();
             mInterstitial = null;
@@ -243,24 +239,23 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
 ```
 
 ##原生广告
-原生广告可让您通过与现有设计一致的方式轻松地通过应用获利。 AdroiSDK可让您访问广告的各个素材资源，以便您按照自己的方式进行排列; 这样，广告看起来和感觉就像您的应用程序的其余部分。 SDK会自动处理图片缓存和指标跟踪，以便您可以专注于展示广告的方式，时间和位置。
+原生广告可让您通过与现有设计一致的方式轻松地通过应用获利。 AdroiSDK可让您访问广告的各个素材资源，以便您按照自己的方式进行排列; 这样，广告看起来就像应用内容的一部分。 SDK会自动处理图片缓存和指标跟踪，以便您可以专注于展示广告的方式，时间和位置。
 
-该Adroi-SDK提供了一个类， DroiAdAdapter ，一个包装现有Adapter子类广告插入到ListView ， GridView ，或其他用视图所用的Adapter的实现对象 （包括CursorAdapter ）。
+Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子类将广告插入到ListView、GridView或其他视图所用的Adapter的实现对象（包括CursorAdapter）。
 
 在Android应用程式中加入原生广告需要三个简单的步骤：
 
-1.为原生广告创建XML布局
-2.定义应在信息流中放置广告的位置
-3.创建DroiAdAdapter来包装您现有的Adapter子类并开始加载广告
+1.为原生广告创建XML布局;
+2.定义应在信息流中放置广告的位置;
+3.创建DroiAdAdapter来包装您现有的Adapter子类并开始加载广告;
 
-###隐私信息图标
-
-您的原生广告必须显示隐私权信息图标。在广告中添加隐私权信息图标的说明如下。DroiSDK会自动处理隐私信息图标上的点击事件。
+**关于隐私信息图标**
+您的原生广告必须显示隐私权信息图标,DroiSDK会自动处理隐私信息图标上的点击事件.如何在广告中添加隐私权信息图标可以参考下节。
 
 ###设置原生广告布局
 
 1.首先，定义一个XML布局，了解广告在应用Feed中的外观。 这个例子布局包含两个TextView S代表标题和其他文本，再加上三个ImageView：一个图标图像，主图像和隐私信息的图标。 从广告中选择最适合您应用Feed中最无缝的资源。
-*不过，您的广告必须包含隐私信息的图标* 。建议的尺寸为40 dp大小的方块包含10dp的padding（即图标显示面积只有20dp*20dp，但点击面积更大些）。 此图标链接到一个重要的隐私声明，并且是必须的    。
+**不过，您的广告必须包含隐私信息的图标** 。建议的尺寸为40 dp大小的方块包含10dp的padding（即图标显示面积只有20dp*20dp，但点击面积更大些）。 此图标链接到一个重要的隐私声明，并且是必须的。
 
 例如：res/layout/native_ad_layout.xml
 ```
@@ -327,12 +322,13 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
       .build();
 ```
  
-注意：如果要向附加功能添加图像，键必须以“image”结尾，
+注意：如果要向附加功能添加图像，键必须以“image”结尾。
 
-3DroiAdAdapter通过该类：DroiStaticNativeAdRenderer在您的信息流中加载的广告。 创建ViewBinder的实例 ：
+3.DroiAdAdapter通过类DroiStaticNativeAdRenderer在您的信息流中加载的广告。 创建DroiStaticNativeAdRenderer的实例 ：
 ```
     DroiStaticNativeAdRenderer adRenderer = new DroiStaticNativeAdRenderer(viewBinder);
 ```
+
 ###在信息流中放置广告
 
 接下来，通过DroiNativeAdPositioning.DroiServerPositioning对象来设置广告在信息流中显示的位置。 您可以在原生广告单元的设置界面设置广告在信息流中显示的位置以及显示间隔。
@@ -352,11 +348,12 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
     mAdAdapter = new DroiAdAdapter(this, adapter, adPositioning);
 ```
 
-接下来，注册广告渲染器（在步骤1中通过ViewBinder创建的），使适配器通过您创建的布局渲染广告：
+接下来，注册广告渲染器（在上一节的步骤3中通过ViewBinder创建的DroiStaticNativeAdRenderer实例），使适配器通过您创建的布局渲染广告：
 ```
     mAdAdapter.registerAdRenderer(adRenderer);
 ```
-最后，信息流试图的适配器为DroiAdAdapter的实例：
+
+最后，设置信息流视图的适配器(DroiAdAdapter的实例)：
 ```
     myListView.setAdapter(mAdAdapter);
 ```
@@ -437,7 +434,7 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 
 ###销毁DroiAdAdapter
 
-当DroiAdapter的Activity销毁是，DroiAdapter也必须销毁。你应该在创建DroiAdapter相反的生命周期方法中，销毁DroiAdapter。 如果你在Activity#onCreate创建了适配器，你应该在Activity#onDestroy毁掉它。如果你在Activity#onResume创建了适配器，你应该在Activity#onPause毁掉它。
+当DroiAdapter的Activity销毁时，DroiAdapter也必须销毁。你应该在创建DroiAdapter相反的生命周期方法中，销毁DroiAdapter。 如果你在Activity#onCreate创建了适配器，你应该在Activity#onDestroy毁掉它。如果你在Activity#onResume创建了适配器，你应该在Activity#onPause毁掉它。
 示例代码：
 ```
      @Override
@@ -448,6 +445,7 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 ```
 
 ##其他说明
+
 ###调试模式
 开发者接入SDK时，可以通过以下方法开启Debug模式来打印日志。正式外发的应用请关闭Debug模式，否则会影响广告计费！（开关Debug模式的代码建议添加在Application中的初始化代码之后）。
 ```
@@ -455,8 +453,7 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 ``` 
 已正式发布的应用，可以在手机的/sdcard/AdSDK/目录下修改dev_data.json文件,替换内容 {"debug_mode":true} 后重启应用即可开启SDK的Debug功能。
 **注：**    *正式发布的应用请关闭调试模式，否则会影响广告计费！*
-
-    
+   
 ###关于混淆
 如果您的应用需要混淆，请在混淆的配置文件中加入以下代码：
 ```
@@ -509,8 +506,6 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
     public static final ** CREATOR;
 }
 
-
-
 #inmobi
 -keepattributes SourceFile,LineNumberTable
 -keep class com.inmobi.** { *; }
@@ -532,7 +527,6 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
 -keep class com.moat.** {*;}
 -dontwarn com.moat.**
 
-
 #facebook
 -keep class com.facebook.** { *; }
 -keep interface com.facebook.** { *; }
@@ -553,15 +547,17 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
     public *;
 }
 ```
+
 ##FAQ
-Q1.参数太多，不知道如何填写？
-A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对应的替换值，开发者拿到表格后，直接把数据填写到对应的 meta-data 项中即可(**下方数据为示例数据**)。
-必须填写的数值：
-    DROI_APPID        meituan01
-    DROI_CHANNEL        mt_001
-以下数据就运营如果没有给，可以不用在meta-data中配置：
-    DROI_CUSTOMER             hwdsf0001
-    DROI_BRANDS             thirdparty    
+Q1.参数太多，不知道如何填写？  
+A1.运营给出数据时会以Excel表格给出，会详细给出各个字段对应的替换值，开发者拿到表格后，直接把数据填写到对应的 meta-data 项中即可(**下方数据为示例数据**)。  
+必须填写的数值：  
+    DROI_APPID        meituan01  
+    DROI_CHANNEL        mt_001  
+以下数据就运营如果没有给，可以不用在meta-data中配置：  
+
+    DROI_CUSTOMER             hwdsf0001  
+    DROI_BRANDS             thirdparty 
     DROI_PROJECT            tp_01
     DROI_CPU                tp1111
     DROI_OSVERSION          6.0
