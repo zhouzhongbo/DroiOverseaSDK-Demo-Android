@@ -1,6 +1,5 @@
 # ADroi海外聚合广告SDK
-标签（空格分隔）：ADroi-sdk 说明文档
-
+ADroi-SDK 说明文档
 ---
 
 #简介
@@ -24,7 +23,14 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.droi:adroi:2.0.1'   //增加此行代码
+    //增加ADroiSDK依赖
+    compile 'com.droi:adroi:2.0.1'   
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //增加Facebook-Ad-SDK依赖
+    compile 'com.facebook.android:audience-network-sdk:4.+'
+    compile "com.facebook.fresco:fresco:0.5.0"
+    //增加AdMob-Ad-SDK依赖
+    compile 'com.google.android.gms:play-services-ads:+'
 }
 ```
 2.在项目的AndroidManifest.xml中增加基础配置： 
@@ -33,6 +39,25 @@ dependencies {
     ...>
     <application>
         ...
+        
+        <!-- 增加Admob-AD相关配置 -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- 增加Facebook-AD相关配置 -->
+        <activity
+            android:name="com.facebook.ads.InterstitialAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name="com.facebook.ads.AudienceNetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+
+        
         <!--配置应用ID&渠道号，必配，数据由Droi运营给出-->
         <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
         <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
