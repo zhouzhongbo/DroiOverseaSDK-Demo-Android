@@ -9,7 +9,7 @@ ADroi海外聚合广告SDK是卓易科技为出海客户进行打造的变现平
 由于目前部分海外广告平台不再支持Eclipse,所以本SDK目前未给出支持Eclipse的方式。
 ##Android Studio 安装SDK请参照以下步骤：
     
-1.在项目app的build.gradle中添加如下代码
+1.在项目app的build.gradle中添加如下代码：
 ```
 repositories {
     jcenter()
@@ -33,36 +33,35 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:+'
 }
 ```
+
 2.在项目的AndroidManifest.xml中增加基础配置： 
 ```
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    ...>
-    <application>
-        ...
-        
-        <!-- 增加Admob-AD相关配置 -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+<application>
+    ...
 
-        <!-- 增加Facebook-AD相关配置 -->
-        <activity
-            android:name="com.facebook.ads.InterstitialAdActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity
-            android:name="com.facebook.ads.AudienceNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+    <!-- 增加Admob-AD相关配置 -->
+    <activity
+        android:name="com.google.android.gms.ads.AdActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:theme="@android:style/Theme.Translucent" />
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
 
-        <!--配置应用ID&渠道号，必配，数据由Droi运营给出-->
-        <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
-        <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
-    </application>
-</manifest>
+    <!-- 增加Facebook-AD相关配置 -->
+    <activity
+        android:name="com.facebook.ads.InterstitialAdActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"/>
+    <activity
+        android:name="com.facebook.ads.AudienceNetworkActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"/>
+
+    <!--配置应用ID&渠道号，必配，数据由Droi运营给出-->
+    <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
+    <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
+</application>
 ```
+
 3.在项目的AndroidManifest.xml中配置广告控制相关参数（选配）：
 ```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -250,11 +249,11 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
 3.创建DroiAdAdapter来包装您现有的Adapter子类并开始加载广告;
 
 **关于隐私信息图标**
-您的原生广告必须显示隐私权信息图标,ADroiSDK会自动处理隐私信息图标上的点击事件.如何在广告中添加隐私权信息图标可以参考下节。
+您的原生广告必须显示隐私权信息图标,ADroiSDK会自动处理隐私信息图标上的点击事件，如何在广告中添加隐私权信息图标可以参考下节。
 
 ###设置原生广告布局
 
-1.首先，定义一个XML布局，了解广告在应用Feed中的外观。 这个例子布局包含两个TextView S代表标题和其他文本，再加上三个ImageView：一个图标图像，主图像和隐私信息的图标。 从广告中选择最适合您应用Feed中最无缝的资源。
+1.首先，定义一个XML布局，了解广告在应用Feed中的外观。这个例子布局包含两个TextView S代表标题和其他文本，再加上三个ImageView：一个图标图像，主图像和隐私信息的图标；从广告中选择最适合您应用Feed中最无缝的资源。
 **不过，您的广告必须包含隐私信息的图标** 。建议的尺寸为40 dp大小的方块包含10dp的padding（即图标显示面积只有20dp*20dp，但点击面积更大些）。 此图标链接到一个重要的隐私声明，并且是必须的。
 
 例如：res/layout/native_ad_layout.xml
@@ -275,12 +274,14 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
         ... />
     </RelativeLayout>
 ```
+
 **注意**：您应该设置你的ImageViews为null背景属性，以便处理PNG透明度：
 ```
     <ImageView
     android:background="@null"
     ... />
 ```
+
 2.接下来，创建一个ViewBinder对象，指定布局XML和广告内容之间的绑定。
 
 ```
@@ -341,9 +342,9 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
 
 ###创建DroiAdAdapter
 
-DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存。
+DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓存。
 
-创建DroiAdAdapter实例的参数包含：当前的Context，当前List的Adapter的子类，以及您在上一步中创建的DroiNativeAdPositioning对象。
+创建DroiAdAdapter实例的参数包含：当前的Context、当前List的Adapter的子类以及您在上一步中创建的DroiNativeAdPositioning对象。
 ```
     mAdAdapter = new DroiAdAdapter(this, adapter, adPositioning);
 ```
@@ -370,7 +371,7 @@ DroiAdAdapter类根据在Droi UI设置的规则放置广告并处理广告缓存
                         NativeAdAsset.MAIN_IMAGE,
                         NativeAdAsset.CALL_TO_ACTION_TEXT);
 ```
-然后，创建一个新的RequestParameters使用对象Builder ：
+然后，创建一个新的RequestParameters使用对象Builder：
 ```
     mRequestParameters = new RequestParameters.Builder()
                         .location(location)
