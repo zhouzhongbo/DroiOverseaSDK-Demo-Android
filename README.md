@@ -19,6 +19,7 @@ repositories {
         url "https://github.com/DroiBaaS/DroiOversea-AD-SDK/raw/master/"
     }
 }
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements DroiView.BannerAd
         }
         super.onDestroy();
     }
-
+}
 ```
 
 ##插屏广告
@@ -238,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements DroiInterstitial.
 ```
 
 ##原生广告
-原生广告可让您通过与现有设计一致的方式轻松地通过应用获利。 AdroiSDK可让您访问广告的各个素材资源，以便您按照自己的方式进行排列; 这样，广告看起来就像应用内容的一部分。 SDK会自动处理图片缓存和指标跟踪，以便您可以专注于展示广告的方式，时间和位置。
+原生广告可让您通过与现有设计一致的方式轻松地通过应用获利。AdroiSDK可让您访问广告的各个素材资源，以便您按照自己的方式进行排列; 这样，广告看起来就像应用内容的一部分。 SDK会自动处理图片缓存和指标跟踪，以便您可以专注于展示广告的方式，时间和位置。
 
 Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子类将广告插入到ListView、GridView或其他视图所用的Adapter的实现对象（包括CursorAdapter）。
 
@@ -249,7 +250,7 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
 3.创建DroiAdAdapter来包装您现有的Adapter子类并开始加载广告;
 
 **关于隐私信息图标**
-您的原生广告必须显示隐私权信息图标,ADroiSDK会自动处理隐私信息图标上的点击事件，如何在广告中添加隐私权信息图标可以参考下节。
+您的原生广告必须显示隐私权信息图标，ADroiSDK会自动处理隐私信息图标上的点击事件，如何在广告中添加隐私权信息图标可以参考下节说明。
 
 ###设置原生广告布局
 
@@ -325,7 +326,7 @@ Adroi-SDK提供了一个类（DroiAdAdapter）:一个包装现有Adapter的子�
  
 注意：如果要向附加功能添加图像，键必须以“image”结尾。
 
-3.DroiAdAdapter通过类DroiStaticNativeAdRenderer在您的信息流中加载的广告。 创建DroiStaticNativeAdRenderer的实例 ：
+3.DroiAdAdapter通过类DroiStaticNativeAdRenderer在您的信息流中加载的广告。 创建DroiStaticNativeAdRenderer的实例：
 ```
     DroiStaticNativeAdRenderer adRenderer = new DroiStaticNativeAdRenderer(viewBinder);
 ```
@@ -354,14 +355,14 @@ DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓�
     mAdAdapter.registerAdRenderer(adRenderer);
 ```
 
-最后，设置信息流视图的适配器(DroiAdAdapter的实例)：
+最后，设置信息流视图的适配器（DroiAdAdapter的实例）：
 ```
     myListView.setAdapter(mAdAdapter);
 ```
 
 ###开始加载广告
 
-到这一步，DroiAdAdapter已准备好根据您的设置来加载广告。为了改善您的应用程序显示广告的相关性，你可以设置位置，或者额外的关键字数据。您还可以精确指定所需的广告物料，以帮助节省带宽。
+到这一步，DroiAdAdapter已准备好根据您的设置来加载广告。为了改善您的应用程序显示广告的相关性，你可以设置位置或者额外的关键字数据。您还可以精确指定所需的广告物料来节省带宽。
 ```
     final EnumSet<NativeAdAsset> desiredAssets = EnumSet.of(
                         NativeAdAsset.TITLE,
@@ -371,7 +372,7 @@ DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓�
                         NativeAdAsset.MAIN_IMAGE,
                         NativeAdAsset.CALL_TO_ACTION_TEXT);
 ```
-然后，创建一个新的RequestParameters使用对象Builder：
+然后创建一个新的RequestParameters使用对象Builder：
 ```
     mRequestParameters = new RequestParameters.Builder()
                         .location(location)
@@ -384,7 +385,7 @@ DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓�
     mAdAdapter.loadAds(AD_UNIT_ID, mRequestParameters);
 ```
 
-要加载全新的广告到信息流可以调用DroiAdAdapter#refreshAds 。
+要加载全新的广告到信息流可以调用DroiAdAdapter#refreshAds。
 
 示例代码：
 ```
@@ -435,7 +436,7 @@ DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓�
 
 ###销毁DroiAdAdapter
 
-当DroiAdapter的Activity销毁时，DroiAdapter也必须销毁。你应该在创建DroiAdapter相反的生命周期方法中，销毁DroiAdapter。 如果你在Activity#onCreate创建了适配器，你应该在Activity#onDestroy毁掉它。如果你在Activity#onResume创建了适配器，你应该在Activity#onPause毁掉它。
+当DroiAdapter的Activity销毁时，DroiAdapter也必须销毁。你应该在创建DroiAdapter相反的生命周期方法中销毁DroiAdapter。 如果你在Activity#onCreate创建了适配器，你应该在Activity#onDestroy毁掉它。如果你在Activity#onResume创建了适配器，你应该在Activity#onPause毁掉它。
 示例代码：
 ```
      @Override
@@ -448,12 +449,12 @@ DroiAdAdapter类根据在ADroi UI设置的规则放置广告并处理广告缓�
 ##其他说明
 
 ###调试模式
-开发者接入SDK时，可以通过以下方法开启Debug模式来打印日志（开关Debug模式的代码建议添加在Application中的初始化代码之后）。
+开发者接入SDK时，可以通过以下方法开启Debug模式来打印日志以及请求测试广告（开关Debug模式的代码建议添加在Application中的初始化代码之后）。
 ```
     DroiSdk.setDebugMode(true);
 ``` 
-已正式发布的应用，可以在手机的/sdcard/AdSDK/目录下修改dev_data.json文件,替换内容 {"debug_mode":true} 后重启应用即可开启SDK的Debug功能。  
-**注：**    *正式发布的应用请关闭调试模式，否则会影响广告计费！*  
+已正式发布的应用，可以在手机的/sdcard/AdSDK/目录下修改dev_data.json文件,替换内容 {"debug_mode":true} 后重启应用即可开启SDK的日志打印功能。  
+**注：**    *正式发布的应用请关闭调试模式，否则会影响广告计费！*  
 
 ###关于混淆
 如果您的应用需要混淆，请在混淆的配置文件中加入以下代码：
@@ -580,4 +581,12 @@ Q2.无法获取到广告？
 A2.首先确认手机网络连接状态，网络是否可用；然后确认您的DROI_APPID以及DROI_CHANNEL是否填正确填写；然后确认当前应用的包名是不是您提供给Droi运营的包名；最后再检查一下使用的广告位及对应的类型是否一致，比如不要在横幅广告创建方法中调用插屏类广告的广告位。如果以上都检查完还是无法获取广告请联系Droi运营，确认是否给您的应用增加了相关配置！  
 
 Q3.集成aar时出现错误？  
-A3.aar内集成了fb,inmobi,admob广告相关配置，如果您在AndroidManifest中还做了上述广告平台的相关配置，可以删除本地配置。
+A3.aar内集成了fb,inmobi,admob广告相关配置，如果您在AndroidManifest中还做了上述广告平台的相关配置，可以删除本地配置。另外部分广告平台SDK有相关的依赖，如果与您本地的集成有冲突，可以通过以下方式移除相关依赖：  
+V4包依赖冲突eg：  
+```
+compile ('com.facebook.android:audience-network-sdk:4.+')
+{
+        exclude module: 'support-v4'
+        exclude group: 'com.android.support'
+}
+```
