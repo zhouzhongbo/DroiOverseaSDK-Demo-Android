@@ -1,9 +1,9 @@
-# ADroi海外聚合广告SDK
+# ADroi海外广告SDK
 ADroi-SDK 说明文档
 ---
 
 #简介
-ADroi海外聚合广告SDK是卓易科技为出海客户进行打造的变现平台，实现了多平台SDK的聚合，实时动态切换，包含了强大的控制功能，让出海客户有更多选择的同时，也简化了接入流程！
+ADroi海外广告SDK是为出海客户进行打造的变现平台。让出海客户获取更高收益的同时简化了接入流程！
     
 #安装
 由于目前部分海外广告平台不再支持Eclipse,所以本SDK目前未给出支持Eclipse的方式。
@@ -57,7 +57,7 @@ dependencies {
         android:name="com.facebook.ads.AudienceNetworkActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-    <!--配置应用ID&渠道号，必配，数据由Droi运营给出-->
+    <!--配置应用ID&渠道号，必配，数据由运营给出-->
     <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
     <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
 </application>
@@ -69,12 +69,12 @@ dependencies {
     ...>
     <application>
         ...
-        <!--如有需要，配置控制参数，参数由Droi运营给出 -->
-        <meta-data android:name="DROI_CUSTOMER" android:value="卓易客户项"/>
-        <meta-data android:name="DROI_BRANDS" android:value="卓易品牌项"/>
-        <meta-data android:name="DROI_PROJECT" android:value="卓易工程项"/>
-        <meta-data android:name="DROI_CPU" android:value="卓易平台项"/>
-        <meta-data android:name="DROI_OSVERSION" android:value="卓易版本项"/>
+        <!--如有需要，配置控制参数，参数由运营给出 -->
+        <meta-data android:name="DROI_CUSTOMER" android:value="子客户项"/>
+        <meta-data android:name="DROI_BRANDS" android:value="品牌项"/>
+        <meta-data android:name="DROI_PROJECT" android:value="工程项"/>
+        <meta-data android:name="DROI_CPU" android:value="平台项"/>
+        <meta-data android:name="DROI_OSVERSION" android:value="版本项"/>
     </application>
 </manifest>
 ```
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements DroiView.BannerAd
         droiView = (DroiView) findViewById(R.id.adview);
         //2.设置广告单元ID
         droiView.setAdUnitId("YOUR_BANNER_AD_UNIT_ID_HERE");
-        //3.请求广告
+        //3.请求广告/
         droiView.loadAd();
         //4.设置广告监听
         droiView.setBannerAdListener(this);
