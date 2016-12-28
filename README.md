@@ -57,8 +57,9 @@ dependencies {
         android:name="com.facebook.ads.AudienceNetworkActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-    <!--配置应用ID&渠道号，必配! -->
-    <!--参数需要向运营人员申请，申请时须提供包名以及海外市场的URL;如未上线海外市场,请上线之后提供URL，或者提供包，由ADroi协助上线-->
+    <!-- 配置应用ID&渠道号，必配! -->
+    <!-- 参数需要向运营人员申请，申请时须提供包名以及海外市场的URL; -->
+    <!-- 如未上线海外市场,请上线之后提供URL，或者提供包，由ADroi协助上线! -->
     <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
     <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
 </application>
