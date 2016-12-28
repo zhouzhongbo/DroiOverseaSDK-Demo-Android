@@ -58,7 +58,7 @@ dependencies {
         android:configChanges="keyboardHidden|orientation|screenSize"/>
 
     <!--配置应用ID&渠道号，必配! -->
-    <!--数据需要向运营人员申请，申请时须提供包名以及海外市场的URL;如未上线海外市场,请上线之后提供URL，或者提供包，由ADroi协助上线-->
+    <!--参数需要向运营人员申请，申请时须提供包名以及海外市场的URL;如未上线海外市场,请上线之后提供URL，或者提供包，由ADroi协助上线-->
     <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
     <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
 </application>
@@ -70,7 +70,9 @@ dependencies {
     ...>
     <application>
         ...
-        <!-- 如需分配给下游客户，则参数必须填写;具体可以联系我们的运营人员。-->
+        <!-- 如需分配给下游客户，则参数必须填写; -->
+        <!-- 填入的参数只能由a-z的字符组成，不能包含空格以及特殊符号，长度不要超过10位;-->
+        <!-- 具体可以联系我们的运营人员。-->
         <meta-data android:name="DROI_CUSTOMER" android:value="子客户项"/>
         <meta-data android:name="DROI_BRANDS" android:value="品牌项"/>
         <meta-data android:name="DROI_PROJECT" android:value="工程项"/>
