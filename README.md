@@ -3,8 +3,8 @@ ADroi-SDK 说明文档
 ---
 
 #简介
-ADroi海外广告SDK是为出海客户精心打造的变现平台！
-    
+ADroi海外广告SDK是为客户精心打造的海外变现平台，方便出海客户快速的获取丰富优质的广告资源；同时该平台拥有强大的控制功能，保证广告收益的最优化。
+
 #安装
 由于目前部分海外广告平台不再支持Eclipse,所以本SDK目前未给出支持Eclipse的方式。
 ##Android Studio 安装SDK请参照以下步骤：
@@ -57,7 +57,8 @@ dependencies {
         android:name="com.facebook.ads.AudienceNetworkActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-    <!--配置应用ID&渠道号，必配，数据由运营给出-->
+    <!--配置应用ID&渠道号，必配! -->
+    <!--数据需要向运营人员申请，申请时须提供包名以及海外市场的URL;如未上线海外市场,请上线之后提供URL，或者提供包，由ADroi协助上线-->
     <meta-data android:name="DROI_APPID" android:value="您的应用ID"/>
     <meta-data android:name="DROI_CHANNEL" android:value="您的渠道号"/>
 </application>
