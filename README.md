@@ -70,7 +70,7 @@ dependencies {
     ...>
     <application>
         ...
-        <!--如有需要，配置控制参数，参数由运营给出 -->
+        <!-- 如需分配给下游客户，则参数必须填写;具体可以联系我们的运营人员。-->
         <meta-data android:name="DROI_CUSTOMER" android:value="子客户项"/>
         <meta-data android:name="DROI_BRANDS" android:value="品牌项"/>
         <meta-data android:name="DROI_PROJECT" android:value="工程项"/>
